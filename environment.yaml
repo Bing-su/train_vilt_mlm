@@ -14,12 +14,10 @@ dependencies:
   - datasets>=2.6
   - pytorch-lightning
 
-  - scikit-learn
   - pandas
 
   - rich
   - typer
-  - shellingham
   - loguru
   - wandb
 
@@ -30,3 +28,7 @@ dependencies:
   - mypy
   - ipywidgets
   - pre-commit
+
+  - pip:
+      - pytorch_optimizer
+      - bitsandbytes
