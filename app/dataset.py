@@ -36,6 +36,8 @@ class ViltDataset(Dataset):
             return_tensors="pt",
             return_special_tokens_mask=True,
         )
+        for k, v in inputs.items():
+            inputs[k] = v.squeeze(0)
         inputs["pixel_values"] = pixel_values
         return inputs
 
