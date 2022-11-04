@@ -16,6 +16,8 @@ class ViltModule(pl.LightningModule):
         weight_decay: float = 1e-4,
     ):
         super().__init__()
+        self.save_hyperparameters()
+
         self.model = model
         self.processor = processor
 
