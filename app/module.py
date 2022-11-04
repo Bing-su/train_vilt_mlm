@@ -61,9 +61,11 @@ class ViltModule(pl.LightningModule):
             from bitsandbytes.optim import GlobalOptimManager
 
             manager = GlobalOptimManager.get_instance()
-            modules = self.model.modules()
-            for module in modules:
-                if isinstance(module, torch.nn.Embedding):
+            for name, module in self.model.named_modules():
+                if (
+                    isinstance(module, torch.nn.Embedding)
+                    or name == "mlm_score.decoder"
+                ):
                     manager.register_module_override(
                         module, "weight", {"optim_bits": 32}
                     )
