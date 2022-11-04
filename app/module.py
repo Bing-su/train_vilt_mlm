@@ -37,7 +37,7 @@ class ViltModule(pl.LightningModule):
         return loss
 
     def configure_optimizers(self):
-        params = self.model.parameters()
+        params = self.model.named_parameters()
 
         no_decay = ["bias", "LayerNorm.weight"]
         optimizer_grouped_parameters = [
