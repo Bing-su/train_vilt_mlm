@@ -35,6 +35,7 @@ class ViltDataset(Dataset):
             truncation=True,
             return_tensors="pt",
             return_special_tokens_mask=True,
+            verbose=False
         )
         for k, v in inputs.items():
             inputs[k] = v.squeeze(0)

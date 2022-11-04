@@ -80,6 +80,4 @@ class ViltModule(pl.LightningModule):
 
     def save(self, save_path: str):
         self.model.save_pretrained(save_path)
-        logger.info(f"model saved at '{save_path}'")
         self.processor.save_pretrained(save_path)
-        logger.info(f"processor saved at '{save_path}'")
