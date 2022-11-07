@@ -79,7 +79,6 @@ def train(
     checkpoints = ModelCheckpoint(
         monitor="train/loss_epoch",
         save_last=True,
-        filename="{epoch:02d}-{train_loss:.2f}",
         save_top_k=3,
         mode="min",
     )
