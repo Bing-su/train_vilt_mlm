@@ -3,7 +3,11 @@ from typing import Optional
 
 import pytorch_lightning as pl
 from loguru import logger
-from pytorch_lightning.callbacks import LearningRateMonitor, RichProgressBar
+from pytorch_lightning.callbacks import (
+    LearningRateMonitor,
+    ModelCheckpoint,
+    RichProgressBar,
+)
 from pytorch_lightning.loggers import WandbLogger
 from transformers import ViltForMaskedLM, ViltProcessor
 from typer import Option, Typer
@@ -72,8 +76,15 @@ def train(
         learning_rate=learning_rate,
         weight_decay=weigth_decay,
     )
+    checkpoints = ModelCheckpoint(
+        monitor="train/loss_epoch",
+        save_last=True,
+        filename="{epoch:02d}-{train/loss:.2f}",
+        save_top_k=3,
+        mode="min",
+    )
 
-    callbacks = [RichProgressBar(), LearningRateMonitor("step")]
+    callbacks = [checkpoints, RichProgressBar(), LearningRateMonitor("step")]
 
     if seed is not None:
         pl.seed_everything(seed)
