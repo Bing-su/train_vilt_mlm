@@ -76,11 +76,13 @@ def train(
         learning_rate=learning_rate,
         weight_decay=weigth_decay,
     )
+
     checkpoints = ModelCheckpoint(
         monitor="train/loss_epoch",
         save_last=True,
         save_top_k=3,
         mode="min",
+        every_n_train_steps=10000,
     )
 
     callbacks = [checkpoints, RichProgressBar(), LearningRateMonitor("step")]

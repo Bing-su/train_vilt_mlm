@@ -1,7 +1,7 @@
 python main.py \
-    --optimizer adamw_bnb \
+    --optimizer madgrad \
     --batch-size 32 \
     --num-workers 12 \
-    --max-epochs 100 \
-    --steps-per-epoch 10000 \
-    --seed 221104
+    --max-epochs 1 \
+    --steps-per-epoch 1000000 \
+    --seed 221108
